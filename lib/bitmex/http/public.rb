@@ -23,7 +23,7 @@ module Bitmex
         end
 
         # @see https://www.bitmex.com/api/explorer/#!/Instrument/Instrument_getActive
-        def instrument_active(query = {})
+        def instrument_active
           @connection.get('/api/v1/instrument/active').body
         end
       end
