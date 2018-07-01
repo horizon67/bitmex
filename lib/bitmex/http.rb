@@ -1,6 +1,6 @@
-require 'bitflyer'
-require 'bitflyer/http/public'
-require 'bitflyer/http/private'
+require 'bitmex'
+require 'bitmex/http/public'
+require 'bitmex/http/private'
 require 'faraday'
 require 'faraday_middleware'
 Dir[File.expand_path('../../faraday/*.rb', __FILE__)].each{|f| require f}
