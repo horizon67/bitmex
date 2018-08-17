@@ -11,14 +11,15 @@ module Bitmex
       extend Forwardable
 
       def_delegators :@connection, :get, :post, :delete
+
       def initialize(key, secret)
-        @connection = Faraday::Connection.new(:url => 'https://www.bitmex.com') do |f|
+        @connection = Faraday::Connection.new(:url => Bitmex.url) do |f|
           f.request :json
           f.response :json, :parser_options => { :symbolize_names => true }
           f.use FaradayMiddleware::Authentication, key, secret
           f.use FaradayMiddleware::RaiseHttpException
-          f.use FaradayMiddleware::LoudLogger
-          f.adapter Faraday.default_adapter
+          f.use FaradayMiddleware::LoudLogger if Bitmex.loud_logger
+          f.adapter Bitmex.adapter
         end
       end
     end

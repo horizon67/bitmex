@@ -1,7 +1,10 @@
 require 'bitmex/version'
 require 'bitmex/http'
+require 'bitmex/configuration'
 
 module Bitmex
+  extend Configuration
+
   def http_public_client
     Bitmex::HTTP::Public::Client.new
   end
