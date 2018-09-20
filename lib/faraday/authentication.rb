@@ -12,7 +12,7 @@ module FaradayMiddleware
     def call(env)
       return @app.call(env) if @key.nil? || @secret.nil?
 
-      timestamp = 10.minutes.since.to_i.to_s
+      timestamp = (Time.now - 600).to_i.to_s
       method = env[:method].to_s.upcase
       path = env[:url].path + (env[:url].query ? '?' + env[:url].query : '')
       body = env[:body] || ''
